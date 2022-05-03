@@ -1,5 +1,5 @@
 {
-  "name": "koality-guide-client",
+  "name": "@saschafuchs/koality-guide-client",
   "version": "1.0.0",
   "description": "The KoalityGuide client connects a JavaScript application to the guides.",
   "author": "Nils Langner (nils.langner@leankoala.com)",
@@ -7,7 +7,7 @@
   "main": "./dist/Client.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/koality-io/KoalityGuideJsClient.git"
+    "url": "https://github.com/saschafuchs/KoalityGuideJsClient.git"
   },
   "scripts": {
     "dev": "tsc -w -p tsconfig.json",
