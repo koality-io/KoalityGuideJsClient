@@ -1,3 +1,12 @@
-./src
+/src/
 /__test__/
-/.github
+/.github/
+.gitignore
+.eslintrc.json
+.npmrc
+.prettierrc
+package.json
+package-lock.json
+jest.config.js
+tsconfig.json
+tsconfig.release.json
