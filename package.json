@@ -9,6 +9,9 @@
     "type": "git",
     "url": "https://github.com/koality-io/KoalityGuideJsClient.git"
   },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/yourOrganizationOrAccount"
+  },
   "scripts": {
     "dev": "tsc -w -p tsconfig.json",
     "build": "tsc -p tsconfig.json",
