@@ -5,7 +5,7 @@
     "rootDir": "./src",
     "moduleResolution": "node",
     "paths": {},
-    "sourceMap": true,
+    "sourceMap": false,
     "outDir": "./dist",
     "importHelpers": true,
     "esModuleInterop": true,

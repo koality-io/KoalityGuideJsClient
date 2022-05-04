@@ -1,6 +1,7 @@
 /src/
 /__test__/
 /.github/
+/.idea/
 .gitignore
 .eslintrc.json
 .npmrc
