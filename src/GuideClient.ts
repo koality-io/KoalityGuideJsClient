@@ -17,7 +17,7 @@ interface IApiResponse {
  * @author Nils Langner <nils.langner@webpros.com>
  * @created 2021-08-28
  */
-export default class Client {
+export default class GuideClient {
   private _format: string
   private _baseUrl: string
   private _axios: AxiosStatic
@@ -32,7 +32,7 @@ export default class Client {
   constructor(format = 'md', fallbackLanguage = 'en') {
     this._baseUrl = 'https://api.koalityguide.com'
     this._axios = axios
-    Client._assertFormatAllowed(format)
+    GuideClient._assertFormatAllowed(format)
     this._format = format
     this._fallbackLanguage = fallbackLanguage
   }
@@ -96,8 +96,6 @@ export default class Client {
         throw error
       }
     }
-
-    console.log(response)
 
     return {text: response.data, fetchedLanguage: language}
   }

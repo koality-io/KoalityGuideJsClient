@@ -22,7 +22,8 @@ jobs:
           scope: '@saschafuchs'
       - run: npm ci --no-audit
       - run: npm run lint --if-present
-      - run: npm run esbuild-client --if-present
+      - run: npm run prePublish
+      - run: npm run generateTypes
       - run: npm publish --tag=json
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
