@@ -19,7 +19,7 @@ jobs:
         with:
           node-version: '16.x'
           registry-url: 'https://registry.npmjs.org/'
-          scope: '@saschafuchs'
+          scope: '@webpros'
       - run: npm ci --no-audit
       - run: npm run lint --if-present
       - run: npm run prePublish
