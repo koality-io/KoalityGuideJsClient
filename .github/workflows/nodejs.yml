@@ -24,7 +24,7 @@ jobs:
       - run: npm run lint --if-present
       - run: npm run prePublish
       - run: npm run generateTypes
-      - run: npm publish --tag=json
+      - run: npm publish --tag=json --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
