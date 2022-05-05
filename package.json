@@ -1,6 +1,6 @@
 {
   "name": "koality-guide-client",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "The KoalityGuide client connects a JavaScript application to the guides.",
   "author": "Nils Langner (nils.langner@leankoala.com)",
   "license": "MIT",
@@ -16,7 +16,7 @@
     "dev": "tsc -w -p tsconfig.json",
     "build": "tsc -p tsconfig.json",
     "generateTypes": "tsc --emitDeclarationOnly --declaration --project tsconfig.release.json",
-    "prePublish": "esbuild src/GuideClient.ts --bundle --minify --outfile=dist/GuideClient.js",
+    "prePublish": "esbuild src/GuideClient.ts --bundle --minify --format=esm --target=esnext --outfile=dist/GuideClient.js",
     "clean": "rimraf coverage dist",
     "lint": "eslint --format=pretty --cache --max-warnings 0 --fix --ext .ts .",
     "test": "jest --coverage",
