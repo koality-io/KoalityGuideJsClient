@@ -8,20 +8,18 @@ interface IButtons {
   test: any
 }
 
-interface IText {
-  content: string
-  meta?: {
-    language?: string
-    format?: string
-    buttons: IButtons[]
-  }
+interface IMetaInformation {
+  language?: string
+  format?: string
+  buttons?: IButtons[]
 }
 
 export default class Guide {
-  private _identifier: string
-  private _language: string
-  private _text: IText
-  private _format: string
+  private readonly identifier: string
+  private readonly language: string
+  private readonly text: string
+  private readonly format: string
+  private readonly meta: IMetaInformation
 
   /**
    * The constructor.
@@ -29,13 +27,15 @@ export default class Guide {
    * @param {string} identifier
    * @param {string} language
    * @param {string} text
+   * @param {IMetaInformation} meta
    * @param {string} format
    */
-  constructor(identifier: string, language: string, text: IText, format = 'md') {
-    this._identifier = identifier
-    this._language = language
-    this._text = text
-    this._format = format
+  constructor(identifier: string, language: string, text: string, meta: IMetaInformation, format = 'md') {
+    this.identifier = identifier
+    this.language = language
+    this.text = text
+    this.format = format
+    this.meta = meta
   }
 
   /**
@@ -43,8 +43,17 @@ export default class Guide {
    *
    * @returns {string}
    */
-  getText(): IText {
-    return this._text
+  getText(): string {
+    return this.text
+  }
+
+  /**
+   * Get the guides meta information.
+   *
+   * @returns {IMetaInformation}
+   */
+  getMetaInformation(): IMetaInformation {
+    return this.meta
   }
 
   /**
@@ -53,7 +62,7 @@ export default class Guide {
    * @returns {string}
    */
   getIdentifier(): string {
-    return this._identifier
+    return this.identifier
   }
 
   /**
@@ -62,7 +71,7 @@ export default class Guide {
    * @returns {string}
    */
   getLanguage(): string {
-    return this._language
+    return this.language
   }
 
   /**
@@ -71,6 +80,6 @@ export default class Guide {
    * @returns {string}
    */
   getFormat(): string {
-    return this._format
+    return this.format
   }
 }

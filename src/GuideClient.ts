@@ -3,7 +3,7 @@ import Guide from './Guide'
 import NotFoundError from './NotFoundError'
 
 interface IResponse {
-  text: any
+  content: any
   fetchedLanguage: string
 }
 
@@ -15,26 +15,27 @@ interface IApiResponse {
  * This class is used to fetch all guides from the KoalityGuide engine.
  *
  * @author Nils Langner <nils.langner@webpros.com>
+ *
  * @created 2021-08-28
  */
 export default class GuideClient {
-  private _format: string
-  private _baseUrl: string
-  private _axios: AxiosStatic
-  private _fallbackLanguage: string
+  private readonly format: string
+  private readonly baseUrl: string
+  private readonly axios: AxiosStatic
+  private readonly fallbackLanguage: string
 
   /**
    * The constructor.
    *
-   * @param {string}  format
+   * @param {string} format
    * @param {string} fallbackLanguage
    */
   constructor(format = 'md', fallbackLanguage = 'en') {
-    this._baseUrl = 'https://api.koalityguide.com'
-    this._axios = axios
+    this.baseUrl = 'https://api.koalityguide.com'
+    this.axios = axios
     GuideClient._assertFormatAllowed(format)
-    this._format = format
-    this._fallbackLanguage = fallbackLanguage
+    this.format = format
+    this.fallbackLanguage = fallbackLanguage
   }
 
   /**
@@ -60,8 +61,8 @@ export default class GuideClient {
    * @returns {Promise<Guide>}
    */
   async getGuide(identifier: string, language = 'en') {
-    const {text, fetchedLanguage} = await this._getGuideText(identifier, language)
-    return new Guide(identifier, fetchedLanguage, text, this._format)
+    const {content, fetchedLanguage} = await this._getGuideText(identifier, language)
+    return new Guide(identifier, fetchedLanguage, content.text, content.meta, this.format)
   }
 
   /**
@@ -76,28 +77,28 @@ export default class GuideClient {
    * @private
    */
   private async _getGuideText(identifier: string, language: string, primaryLanguage = 'en'): Promise<IResponse> {
-    const url = `${this._baseUrl}/?identifier=${identifier}&language=${language}&format=${this._format}&fallbackLanguage=${this._fallbackLanguage}`
+    const url = `${this.baseUrl}/?identifier=${identifier}&language=${language}&format=${this.format}&fallbackLanguage=${this.fallbackLanguage}`
 
     let response = <IApiResponse>{}
     try {
-      response = await this._axios({method: 'GET', url})
+      response = await this.axios({method: 'GET', url})
     } catch (error: any) {
       if (error.response) {
         const errorResponse = error.response
 
         if (errorResponse.status === 404) {
-          if (language === this._fallbackLanguage) {
+          if (language === this.fallbackLanguage) {
             throw new NotFoundError(`No guide for identifier "${identifier}" with language "${primaryLanguage}" or fallback language "${language}" found.`)
           }
 
-          return await this._getGuideText(identifier, this._fallbackLanguage, language)
+          return await this._getGuideText(identifier, this.fallbackLanguage, language)
         }
       } else {
         throw error
       }
     }
 
-    return {text: response.data, fetchedLanguage: language}
+    return {content: response.data, fetchedLanguage: language}
   }
 }
 
