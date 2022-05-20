@@ -1,19 +1,18 @@
 module.exports = {
-  preset: 'ts-jest/presets/js-with-ts',
-  testEnvironment: 'node',
-  extensionsToTreatAsEsm: ['.ts'],
   globals: {
     'ts-jest': {
       tsconfig: 'tsconfig.json',
+      importHelpers: true
     },
   },
-  moduleNameMapper: {
-    '^(\\.{1,2}/.*)\\.js$': '$1',
-  },
+  preset: 'ts-jest',
+  testEnvironment: 'node',
+  verbose: true,
+  roots: ['<rootDir>'],
+  testMatch: [
+    '**/tests/**/*.test.ts',
+  ],
   transform: {
-    '^.+\\.ts$': 'ts-jest',
-  },
-  testRegex: '(/__tests__/.*|(\\.|/)(test|spec))\\.ts$',
-  coverageDirectory: 'coverage',
-  collectCoverageFrom: ['src/**/*.ts', '!src/**/*.d.ts'],
-};
+    '^.+\\.(js|ts|tsx)$': 'ts-jest'
+  }
+}

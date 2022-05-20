@@ -22,6 +22,7 @@ jobs:
           scope: '@webpros'
       - run: npm ci --no-audit
       - run: npm run lint --if-present
+      - run: npm run test --if-present
       - run: npm run prePublish
       - run: npm run generateTypes
       - run: npm publish --tag=json --access public
