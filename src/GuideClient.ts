@@ -62,7 +62,7 @@ export default class GuideClient {
    */
   async getGuide(identifier: string, language = 'en') {
     const {content, fetchedLanguage} = await this._getGuideText(identifier, language)
-    return new Guide(identifier, fetchedLanguage, content.text, content.meta, this.format)
+    return new Guide(identifier, fetchedLanguage, content.content, content.meta, this.format)
   }
 
   /**

@@ -1,9 +1,17 @@
 import Client from '../src/GuideClient'
 
 describe('Base Client Test', () => {
-  test('get some base Content', async () => {
-    const koalityGuideClient = new Client('md')
-    const guide = await koalityGuideClient.getGuide('html.deadlink.404', 'de')
+  let koalityGuideClient
+  let guide: any
+  beforeEach(async () =>{
+    koalityGuideClient = new Client('md')
+    guide = await koalityGuideClient.getGuide('html.deadlink.404', 'de')
+  })
+  it('must be german language', async () => {
     expect(guide.getLanguage()).toEqual('de')
+  })
+
+  it('if the there a content', () => {
+    expect(guide.getText()).toContain('404 - Not found')
   })
 })
