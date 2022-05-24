@@ -5,13 +5,20 @@
  * @created 2021-08-28
  */
 interface IButtons {
-  test: any
+  target?: string
+  url: string
+  label: string
+}
+
+interface ICta extends IButtons {
+  subline?: string
 }
 
 interface IMetaInformation {
   language?: string
   format?: string
   buttons?: IButtons[]
+  cta?: ICta[]
 }
 
 export default class Guide {
