@@ -19,6 +19,10 @@ interface IMetaInformation {
   format?: string
   buttons?: IButtons[]
   cta?: ICta[]
+  iframe?: {
+    url: string
+    label: string
+  }
 }
 
 export default class Guide {
