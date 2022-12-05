@@ -22,7 +22,7 @@ interface IMetaInformation {
   iframe?: {
     url: string
     label: string
-  }
+  }[]
 }
 
 export default class Guide {

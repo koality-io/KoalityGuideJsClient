@@ -12,6 +12,6 @@ describe('Base Client Test', () => {
   })
 
   it('if the there a content', () => {
-    expect(guide.getText()).toContain('404 - Not found')
+    expect(guide.getText()).toContain('Was bedeutet ein Fehler mit dem Code 404 (Nicht gefunden)?')
   })
 })
